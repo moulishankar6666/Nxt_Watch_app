@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-import NavAndFooters from '../NavAndFooter'
+import NavAndFooters from '../Sidebar'
 import Header from '../Header'
 
 import {SavedContainer, SavedBodyContent, SavedVideos} from './styledComponents'

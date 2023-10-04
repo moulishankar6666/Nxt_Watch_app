@@ -6,7 +6,7 @@ import {AiOutlineClose} from 'react-icons/ai'
 import {BiSearchAlt2} from 'react-icons/bi'
 
 import Header from '../Header'
-import NavFooters from '../NavAndFooter'
+import NavFooters from '../Sidebar'
 import DarkModeContext from '../../context/ThemeContext'
 import VideoItem from '../VideoItem'
 
@@ -128,7 +128,11 @@ class Home extends Component {
     <FailureContainer dark={isDarkMode}>
       <FailureImage
         alt="failure view"
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png"
+        src={
+          isDarkMode
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+        }
       />
       <FailureHeading>Oops! Something Went Wrong</FailureHeading>
       <FailureDescription>We are having some trouble</FailureDescription>

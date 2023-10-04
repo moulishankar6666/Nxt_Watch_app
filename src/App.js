@@ -7,18 +7,19 @@ import Login from './components/Login'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import Saved from './components/SavedVideos'
+import VideoItemDetails from './components/VideoItemDetails'
 import DarkModeContext from './context/ThemeContext'
 import ProtectedRoute from './components/ProtectedRoute'
 
 import './App.css'
 
-if (JSON.parse(localStorage.getItem('darkMode')) === undefined) {
-  localStorage.setItem('darkMode', JSON.stringify(false))
-}
+// if (JSON.parse(localStorage.getItem('darkMode')) === undefined) {
+//   localStorage.setItem('darkMode', JSON.stringify(false))
+// }
 
 class App extends Component {
   state = {
-    darkMode: JSON.parse(localStorage.getItem('darkMode')),
+    darkMode: false,
   }
 
   onChangeMode = () => {
@@ -41,6 +42,11 @@ class App extends Component {
           <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute exact path="/gaming" component={Gaming} />
           <ProtectedRoute exact path="/saved-videos" component={Saved} />
+          <ProtectedRoute
+            exact
+            path="/videos/:id"
+            component={VideoItemDetails}
+          />
         </Switch>
       </DarkModeContext.Provider>
     )

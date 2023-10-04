@@ -29,7 +29,7 @@ const NavFooters = props => (
       return (
         <NavFootersContainer dark={isDarkMode}>
           <NavLinks>
-            <RouteLink className="link" to="/">
+            <RouteLink to="/">
               <NavLink>
                 <AiFillHome
                   color={
@@ -43,7 +43,7 @@ const NavFooters = props => (
                 </NavRoute>
               </NavLink>
             </RouteLink>
-            <RouteLink className="link" to="/trending">
+            <RouteLink to="/trending">
               <NavLink>
                 <AiFillFire
                   color={
@@ -57,7 +57,7 @@ const NavFooters = props => (
                 </NavRoute>
               </NavLink>
             </RouteLink>
-            <RouteLink className="link" to="/gaming">
+            <RouteLink to="/gaming">
               <NavLink>
                 <SiYoutubegaming
                   color={
@@ -71,7 +71,7 @@ const NavFooters = props => (
                 </NavRoute>
               </NavLink>
             </RouteLink>
-            <RouteLink className="link" to="/saved-videos">
+            <RouteLink to="/saved-videos">
               <NavLink>
                 <RiPlayListAddFill
                   color={

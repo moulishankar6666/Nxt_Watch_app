@@ -25,7 +25,7 @@ const VideoItem = props => {
       {value => {
         const {isDarkMode} = value
         return (
-          <RouterLink className="link" to={`/videos/:${id}`}>
+          <RouterLink className="link" to={`/videos/${id}`}>
             <VideoItemContainer>
               <Thumbnail alt="video thumbnail" src={thumbnailUrl} />
               <VideoDetailsContainer dark={isDarkMode}>

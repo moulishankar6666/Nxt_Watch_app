@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SavedContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: ${props => (props.dark ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.dark ? '#0f0f0f' : '#f9f9f9')};
 `
 export const SavedBodyContent = styled.div`
   height: calc(100vh - 60px);

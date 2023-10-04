@@ -163,7 +163,7 @@ export const FailureContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  color: ${props => (props.dark ? '#181818' : '#f9f9f9')};
+  color: ${props => (props.dark ? '#fff' : '#000')};
 `
 export const FailureImage = styled.img`
   height: 200px;
@@ -175,8 +175,12 @@ export const FailureHeading = styled.h1`
 export const FailureDescription = styled.p`
   font-size: 15px;
   text-align: center;
+  font-weight: 500;
 `
 export const FailureButton = styled.button`
   width: 100px;
   height: 25px;
+  border-radius: 10px;
+  border: solid #000;
+  font-weight: bold;
 `

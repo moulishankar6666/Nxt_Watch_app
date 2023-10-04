@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import Popup from 'reactjs-popup'
 
 export const NavBar = styled.nav`
   height: 60px;
@@ -125,23 +126,19 @@ export const LogoutButtonSm = styled.button`
   }
 `
 
-export const LogoutButtonLg = styled.button`
+export const LogoutButton = styled.button`
   outline: none;
   height: 30px;
   width: 100px;
-  display: none;
   background-color: transparent;
   color: ${props => (props.dark ? '#f9f9f9' : '#0f0f0f')};
   border: solid 2px ${props => (props.dark ? '#f9f9f9' : '#0f0f0f')};
   border-radius: 3px;
   font-weight: bold;
   cursor: pointer;
-
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+`
+export const PopupMainContainer = styled(Popup)`
+  width: 100%;
 `
 export const PopupContainer = styled.div`
   height: 100vh;

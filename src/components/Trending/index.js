@@ -3,15 +3,26 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
-import NavAndFooters from '../NavAndFooter'
+import {AiFillFire} from 'react-icons/ai'
+
+import NavAndFooters from '../Sidebar'
 import Header from '../Header'
 import DarkModeContext from '../../context/ThemeContext'
+import VideoItem from '../VideoItem'
 
 import {
-  LoadContainer,
   TrendingContainer,
   TrendingBodyContent,
   TrendingVideos,
+  RouteHeading,
+  RouteBannerContainer,
+  TrendingVideosContainer,
+  LoadContainer,
+  FailureContainer,
+  FailureImage,
+  FailureHeading,
+  FailureDescription,
+  FailureButton,
 } from './styledComponents'
 
 const apiStatus = {
@@ -76,14 +87,30 @@ class Trending extends Component {
     }
   }
 
-  renderVideos = () => {
-    const {status, TrendingList} = this.state
+  compoundWillUnmount() {
+    this.setState({status: apiStatus.failure, TrendingList: []})
+  }
 
+  renderSuccessView = () => {
+    const {TrendingList} = this.state
+    return (
+      <TrendingVideosContainer>
+        {TrendingList.map(video => (
+          <VideoItem key={video.id} video={video} />
+        ))}
+      </TrendingVideosContainer>
+    )
+  }
+
+  renderVideos = () => {
+    const {status} = this.state
     switch (status) {
-      //   case apiStatus.success:
-      //     return this.renderSuccessView()
+      case apiStatus.success:
+        return this.renderSuccessView()
       case apiStatus.progress:
         return this.renderProgressView()
+      case apiStatus.failure:
+        return this.renderFailureView()
 
       default:
         return null
@@ -91,9 +118,27 @@ class Trending extends Component {
   }
 
   renderProgressView = () => (
-    <LoadContainer>
+    <LoadContainer data-testid="loader">
       <Loader color="#3b82f6" type="ThreeDots" width={50} height={50} />
     </LoadContainer>
+  )
+
+  renderFailureView = isDarkMode => (
+    <FailureContainer dark={isDarkMode}>
+      <FailureImage
+        alt="failure view"
+        src={
+          isDarkMode
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+        }
+      />
+      <FailureHeading>Oops! Something Went Wrong</FailureHeading>
+      <FailureDescription>We are having some trouble</FailureDescription>
+      <FailureButton type="button" onClick={this.getTrendingVideos}>
+        Retry
+      </FailureButton>
+    </FailureContainer>
   )
 
   render() {
@@ -106,7 +151,14 @@ class Trending extends Component {
               <Header />
               <TrendingBodyContent>
                 <NavAndFooters />
-                <TrendingVideos dark={isDarkMode}>hello</TrendingVideos>
+                <TrendingVideos dark={isDarkMode}>
+                  <RouteBannerContainer data-testid="banner" dark={isDarkMode}>
+                    <AiFillFire size={30} color="red" />
+                    <RouteHeading>Trending</RouteHeading>
+                  </RouteBannerContainer>
+
+                  {this.renderVideos()}
+                </TrendingVideos>
               </TrendingBodyContent>
             </TrendingContainer>
           )
