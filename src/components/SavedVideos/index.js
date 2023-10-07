@@ -11,7 +11,8 @@ class Saved extends Component {
     return (
       <DarkModeContext.Consumer>
         {value => {
-          const {isDarkMode} = value
+          const {isDarkMode, savedList} = value
+          console.log(savedList)
           return (
             <SavedContainer dark={isDarkMode} data-testid="home">
               <Header />

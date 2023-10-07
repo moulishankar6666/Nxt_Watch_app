@@ -146,7 +146,7 @@ class VideoItemDetails extends Component {
     this.setState({status: apiStatus.failure, videoDetails: {}})
   }
 
-  renderSuccessView = () => {
+  renderSuccessView = AddToSaveList => {
     const {videoDetails} = this.state
     const {
       channel,
@@ -193,7 +193,11 @@ class VideoItemDetails extends Component {
                 onClick={this.onClickSaveButton}
               >
                 <SaveIcon />
-                <IconName isActive={isSaved}>
+                <IconName
+                  type="button"
+                  onClick={() => AddToSaveList(videoDetails)}
+                  isActive={isSaved}
+                >
                   {isSaved ? 'Saved' : 'Save'}
                 </IconName>
               </IconContainer>
@@ -213,11 +217,11 @@ class VideoItemDetails extends Component {
     )
   }
 
-  renderVideos = () => {
+  renderVideos = AddToSaveList => {
     const {status} = this.state
     switch (status) {
       case apiStatus.success:
-        return this.renderSuccessView()
+        return this.renderSuccessView(AddToSaveList)
       case apiStatus.progress:
         return this.renderProgressView()
       case apiStatus.failure:
@@ -256,7 +260,7 @@ class VideoItemDetails extends Component {
     return (
       <DarkModeContext.Consumer>
         {value => {
-          const {isDarkMode} = value
+          const {isDarkMode, AddToSaveList} = value
           return (
             <VideoDetailContainer
               dark={isDarkMode}
@@ -266,7 +270,7 @@ class VideoItemDetails extends Component {
               <VideoDetailBodyContent>
                 <NavAndFooters />
                 <VideoDetailVideoInfo dark={isDarkMode}>
-                  {this.renderVideos()}
+                  {this.renderVideos(AddToSaveList)}
                 </VideoDetailVideoInfo>
               </VideoDetailBodyContent>
             </VideoDetailContainer>

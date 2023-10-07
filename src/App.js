@@ -20,20 +20,29 @@ import './App.css'
 class App extends Component {
   state = {
     darkMode: false,
+    savedList: [],
   }
 
   onChangeMode = () => {
     this.setState(prevState => ({darkMode: !prevState.darkMode}))
   }
 
+  AddToSavedList = newVideo => {
+    this.setState(prevState => ({
+      savedList: [...prevState.savedList, newVideo],
+    }))
+  }
+
   render() {
-    const {darkMode} = this.state
+    const {darkMode, savedList} = this.state
     localStorage.setItem('darkMode', JSON.stringify(darkMode))
     return (
       <DarkModeContext.Provider
         value={{
           isDarkMode: darkMode,
           onChangeMode: this.onChangeMode,
+          AddToSaveList: this.AddToSavedList,
+          savedList,
         }}
       >
         <Switch>
